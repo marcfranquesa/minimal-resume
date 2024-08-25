@@ -3,14 +3,13 @@ BIB := bibtex
 FILE := example
 LINK := https://marcfranquesa.github.io/minimalist-resume/$(FILE).pdf
 
-all: pdf clean
+all: pdf image clean
 
-image: *pdf
+image: *.pdf
 	@magick -quality 100 -density 200 -colorspace sRGB "$(FILE).pdf" -flatten docs/$(FILE).jpg
 
 pdf: *.tex *.cls
 	$(TEX) $(FILE)
-	@make image
 
 index:
 	@touch index.html
@@ -25,7 +24,7 @@ index:
 	@echo "</body>" >> index.html
 	@echo "</html>" >> index.html
 
-build: all index
+build: pdf index clean
 	@mkdir build
 	@cp $(FILE).pdf build/$(FILE).pdf
 	@mv index.html build
