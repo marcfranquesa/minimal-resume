@@ -1,3 +1,4 @@
+DIR := src
 TEX := pdflatex
 BIB := bibtex
 FILE := example
@@ -5,11 +6,11 @@ LINK := https://marcfranquesa.github.io/minimalist-resume/$(FILE).pdf
 
 all: pdf image clean
 
-image: *.pdf
-	@magick -quality 100 -density 200 -colorspace sRGB "$(FILE).pdf" -flatten docs/$(FILE).jpg
+image: $(DIR)/*.pdf
+	@magick -quality 100 -density 200 -colorspace sRGB "$(DIR)/$(FILE).pdf" -flatten docs/$(FILE).jpg
 
-pdf: *.tex *.cls
-	$(TEX) $(FILE)
+pdf: $(DIR)/*.tex $(DIR)/*.cls
+	cd $(DIR) && $(TEX) $(FILE)
 
 index:
 	@touch index.html
@@ -26,8 +27,9 @@ index:
 
 build: pdf index clean
 	@mkdir build
-	@cp $(FILE).pdf build/$(FILE).pdf
+	@cp $(DIR)/$(FILE).pdf build/$(FILE).pdf
 	@mv index.html build
 
 clean:
-	@rm -rf *.aux *.fls *.fdb_latexmk *.fls *.log *.out *.toc *.bbl *.bcf *.xml *.gz *blx.bib *blg build
+	@rm -rf $(DIR)/*.aux $(DIR)/*.fls $(DIR)/*.fdb_latexmk $(DIR)/*.fls $(DIR)/*.log $(DIR)/*.out $(DIR)/*.toc $(DIR)/*.bbl $(DIR)/*.bcf $(DIR)/*.xml $(DIR)/*.gz $(DIR)/*blx.bib $(DIR)/*blg
+	@rm -rf build
