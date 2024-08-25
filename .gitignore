@@ -4,3 +4,7 @@
 *.log
 *.out
 *.gz
+*.pdf
+
+build
+index.html

@@ -1,6 +1,6 @@
 # Minimalist Resume
 
-A LaTeX document [class](minimalist-resume.cls)/template for résumés. You can find an example usage in [this file](example.tex) and a compiled PDF version [here](example.pdf).
+A LaTeX document [class](minimalist-resume.cls)/template for résumés. You can find an example usage in [this file](example.tex) and a compiled PDF version [here](https://marcfranquesa.github.io/minimalist-resume). To view how the LaTeX is automatically compiled and deployed on github pages check out the [github workflow](.github/workflows/deploy-latex.yaml).
 
 ## Preview
 
